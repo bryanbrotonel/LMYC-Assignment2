@@ -1,0 +1,11 @@
+@using Microsoft.AspNetCore.Identity
+@using LmycWeb.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+<li><a class="nav-link" asp-area="" asp-controller="Boats" asp-action="Index">Boats</a></li>
+<li><a class="nav-link" asp-area="" asp-controller="Reservations" asp-action="Index">Reservations</a></li>
+}

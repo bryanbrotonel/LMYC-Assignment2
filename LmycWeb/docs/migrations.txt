@@ -1,0 +1,2 @@
+dotnet ef migrations add UserRoles
+dotnet ef database update

@@ -22,17 +22,20 @@ namespace LmycWeb.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
+            RoleManager<ApplicationRole> roleManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
             _emailSender = emailSender;
             _logger = logger;
         }
@@ -220,10 +223,33 @@ namespace LmycWeb.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Street = model.Street,
+                    // City = model.City,
+                    Province = model.Province,
+                    PostalCode = model.PostalCode,
+                    Country = model.Country,
+                    MobileNumber = model.Country,
+                    SailingExperience = model.SailingExperience
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    if (!_roleManager.RoleExistsAsync("Member").Result) {
+                        ApplicationRole role = new ApplicationRole();
+                        role.Name = "Member";
+                        IdentityResult roleresult = _roleManager.CreateAsync(role).Result;
+
+                        if (roleresult.Succeeded) {
+                            ModelState.AddModelError("", "Error while creating role!");
+                            return View(model);
+                        }
+                    }
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -232,6 +258,9 @@ namespace LmycWeb.Controllers
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
+
+                    _userManager.AddToRoleAsync(user, "Member").Wait();
+
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);

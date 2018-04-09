@@ -1,10 +1,6 @@
 ﻿<Properties StartupConfiguration="{98CCDE80-924B-4952-8750-C8E07AAC049D}|Default">
   <MonoDevelop.Ide.ItemProperties.LmycWeb PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Startup.cs">
-    <Files>
-      <File FileName="Startup.cs" Line="101" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

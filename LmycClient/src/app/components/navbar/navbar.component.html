@@ -1,39 +1,19 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand" href="#">LMYC</a>
-	<button #navbarToggler class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-	<div class="navbar-collapse collapse w-100" id="collapsingNavbar">
-		<ul class="nav navbar-nav ml-auto w-100" (click)="collapseNav()">
-			<li class="nav-item" routerLinkActive="active">
-				<a class="nav-link" [routerLink]="['/home']">Home</a>
-			</li>
-			<li class="nav-item" routerLinkActive="active">
-				<a class="nav-link" [routerLink]="['/contact']">Contact</a>
-			</li>
-			<!--<li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/our-fleet']">Fleet</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/membership']">Membership</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/rules-and-regulations']">Rules and Regulations</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/faq']">FAQ</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/contact']">Contact</a>
-      </li>-->
-		</ul>
-		<ul class="nav navbar-nav ml-auto w-100 justify-content-end">
-			<li class="nav-item" routerLinkActive="active">
-				<a class="nav-link" [routerLink]="['/register']">Register</a>
-			</li>
-			<li class="nav-item" routerLinkActive="active">
-				<a class="nav-link" [routerLink]="['/login']">Login</a>
-			</li>
-		</ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="container">
+		<a class="navbar-brand" href="/home">LMYC</a>
+		<button #navbarToggler class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+		<div class="navbar-collapse collapse w-100" id="collapsingNavbar">
+			<ul class="nav navbar-nav ml-auto w-100" (click)="collapseNav()">
+				<li><a class="nav-link" href="home/contact">Contact</a></li>
+				<!-- <li><a class="nav-link" href="boats/index">Boats</a></li>
+				<li><a class="nav-link" href="reservations/index">Reservations</a></li> -->
+			</ul>
+			<ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+				<li><a class="nav-link" href="account/register">Register</a></li>
+				<li><a class="nav-link" href="account/login">Log In</a></li>
+			</ul>
+		</div>
 	</div>
 </nav>
